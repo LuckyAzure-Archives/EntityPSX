@@ -12,7 +12,7 @@
 		XA_Shotgun_Shell, 0,
 		"Shotgun Shell",
 		
-		StageId_1_2, STAGE_LOAD_FLAG
+		StageId_1_1, STAGE_LOAD_FLAG
 	},
 	{ //StageId_1_2 (Fresh)
 		//Characters
@@ -28,7 +28,7 @@
 		XA_Parasite, 2,
 		"Parasite",
 		
-		StageId_1_3, STAGE_LOAD_FLAG
+		StageId_1_2, STAGE_LOAD_FLAG
 	},
 	{ //StageId_1_3 (Dadbattle)
 		//Characters
@@ -44,7 +44,7 @@
 		XA_Godrays, 0,
 		"Godrays",
 		
-		StageId_1_4, STAGE_LOAD_FLAG
+		StageId_1_3, STAGE_LOAD_FLAG
 	},
 	{ //StageId_1_4 (Tutorial)
 		//Characters
@@ -61,20 +61,4 @@
 		"Promenade",
 		
 		StageId_1_4, STAGE_LOAD_FLAG
-	},
-	{ //StageId_1_4 (Tutorial)
-		//Characters
-		{Char_BF_New,    FIXED_DEC(110,1),  FIXED_DEC(110,1)},
-		{Char_Agoti_New, FIXED_DEC(-100,1),  FIXED_DEC(110,1)},
-		{NULL,     NULL,     NULL},
-		
-		//Stage background
-		Back_BG2_New,
-		
-		//Song info
-		1, 5,
-		XA_Bushwhack, 0,
-		"Promenade",
-		
-		StageId_1_5, STAGE_LOAD_FLAG
 	}

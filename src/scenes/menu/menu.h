@@ -59,7 +59,10 @@ typedef struct
 	//Menu assets
 	Gfx_Tex tex_back, tex_ng, tex_story, tex_title, tex_options;
 	Gfx_Tex tex_titleback0, tex_titleback1, tex_titleback2, tex_titleback3;
+	Gfx_Tex tex_story0, tex_story1;
 	FontData font_bold, font_arial;
+	
+	u32 sounds[7];
 	
 	Character *gf; //Title Girlfriend
 } Menu;

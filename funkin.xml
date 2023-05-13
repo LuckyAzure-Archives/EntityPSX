@@ -89,8 +89,6 @@
 				<file name = "1.4e.cht" type = "data" source = "iso/songs/promenade/promenade-easy.json.cht"/>
 				<file name = "1.4n.cht" type = "data" source = "iso/songs/promenade/promenade.json.cht"/>
 				<file name = "1.4h.cht" type = "data" source = "iso/songs/promenade/promenade-hard.json.cht"/>
-				
-				<file name = "1.5n.cht" type = "data" source = "iso/songs/bushwhack/bushwhack.json.cht"/>
 			</dir>
 			
 			<!-- Music -->
@@ -103,13 +101,12 @@
 				
 				<file name = "2.xa" type = "xa" source = "iso/songs/2.xa"/>
 				<dummy sectors="128"/>
-				
-				<file name = "3.xa" type = "xa" source = "iso/songs/3.xa"/>
-				<dummy sectors="128"/>
 			</dir>
 			
 			<!-- Sound -->
 			<dir name = "sounds">
+				<file name = "scroll.vag" type = "data" source = "iso/sounds/scrollMenu.ogg.vag"/>
+				<file name = "confirm.vag" type = "data" source = "iso/sounds/confirmMenu.ogg.vag"/>
 				<file name = "micdrop.vag" type = "data" source = "iso/sounds/fnf_loss_sfx.wav.vag"/>
 				<file name = "continue.vag" type = "data" source = "iso/sounds/gameOverEnd.wav.vag"/>
 				<file name = "intro3.vag" type = "data" source = "iso/sounds/intro3.vag"/>

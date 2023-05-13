@@ -58,7 +58,7 @@
 
 //#define STAGE_FREECAM //Freecam
 
-static int Sounds[7];
+static u32 Sounds[7];
 
 static const u8 note_anims[4][3] = {
 	{CharAnim_Left,  CharAnim_LeftAlt,  PlayerAnim_LeftMiss},

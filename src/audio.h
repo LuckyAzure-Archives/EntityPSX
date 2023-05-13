@@ -10,7 +10,6 @@ typedef enum
 	
 	XA_1,
 	XA_2,
-	XA_3,
 	
 	XA_Max,
 } XA_File;
@@ -26,8 +25,6 @@ typedef enum
 	
 	XA_Godrays,
 	XA_Promenade,
-	
-	XA_Bushwhack,
 	
 	XA_TrackMax,
 } XA_Track;
