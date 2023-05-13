@@ -184,6 +184,11 @@ Character *Char_Sol_New(fixed_t x, fixed_t y)
 	this->character.health_i[1][2] = 31;
 	this->character.health_i[1][3] = 33;
 	
+	this->character.health_i[2][0] = 196;
+	this->character.health_i[2][1] = 37;
+	this->character.health_i[2][2] = 41;
+	this->character.health_i[2][3] = 40;
+	
 	//health bar color
 	this->character.health_bar = 0xFF3A9AA8;
 	

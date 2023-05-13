@@ -751,9 +751,23 @@ static void Stage_DrawHealth(s16 health, u16 health_i[2][4], boolean ox)
     // Check if we should use 'dying' frame
     u8 status;
     if (ox)
-        status = !(health > 2000);
-    else
-        status = (health >= 18000);
+	{
+		if(!(health > 2000))
+			status = 1;
+		else if(health >= 18000)
+			status = 2;
+		else
+			status = 0;
+    }
+	else
+	{
+		if(!(health > 2000))
+			status = 2;
+		else if(health >= 18000)
+			status = 1;
+		else
+			status = 0;
+	}
 	
     if (stage.prefs.mode == StageMode_Swap)
         ox = !ox;

@@ -58,19 +58,22 @@ void Back_BG3_DrawBG(StageBack *back)
 	
 	u8 frame;
 	
-	if(this->agoti_speed == 3)
+	if (!stage.paused)
 	{
-		if (!(this->agoti >= 7))
-			this->agoti++;
-		this->agoti_speed = 0;
-	}
-	else
-		this->agoti_speed++;
-	
-	if (stage.flag & STAGE_FLAG_JUST_STEP)
-	{
-		if ((stage.song_step & 0x3) == 0)
-			this->agoti = 0;
+		if(this->agoti_speed == 3)
+		{
+			if (!(this->agoti >= 7))
+				this->agoti++;
+			this->agoti_speed = 0;
+		}
+		else
+			this->agoti_speed++;
+		
+		if (stage.flag & STAGE_FLAG_JUST_STEP)
+		{
+			if ((stage.song_step & 0x3) == 0)
+				this->agoti = 0;
+		}
 	}
 	
 	frame = this->agoti;
@@ -86,19 +89,22 @@ void Back_BG3_DrawBG(StageBack *back)
 	Gfx_LoadTex(&this->tex_agoti, Archive_Find(this->arc_bg3obj, agoti[frame].texname), 0);
 	Stage_DrawTex(&this->tex_agoti, &agoti_src, &agoti_dst, stage.camera.bzoom);
 	
-	if(this->aldryx_speed == 3)
+	if (!stage.paused)
 	{
-		if (!(this->aldryx >= 5))
-			this->aldryx++;
-		this->aldryx_speed = 0;
-	}
-	else
-		this->aldryx_speed++;
-	
-	if (stage.flag & STAGE_FLAG_JUST_STEP)
-	{
-		if ((stage.song_step & 0x7) == 0)
-			this->aldryx = 0;
+		if(this->aldryx_speed == 3)
+		{
+			if (!(this->aldryx >= 5))
+				this->aldryx++;
+			this->aldryx_speed = 0;
+		}
+		else
+			this->aldryx_speed++;
+		
+		if (stage.flag & STAGE_FLAG_JUST_STEP)
+		{
+			if ((stage.song_step & 0x7) == 0)
+				this->aldryx = 0;
+		}
 	}
 	
 	frame = this->aldryx;

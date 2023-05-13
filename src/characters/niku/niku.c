@@ -192,6 +192,11 @@ Character *Char_Niku_New(fixed_t x, fixed_t y)
 	this->character.health_i[1][2] = 33;
 	this->character.health_i[1][3] = 43;
 	
+	this->character.health_i[2][0] = 67;
+	this->character.health_i[2][1] = 59;
+	this->character.health_i[2][2] = 36;
+	this->character.health_i[2][3] = 42;
+	
 	//health bar color
 	this->character.health_bar = 0xFFFFFFFF;
 	

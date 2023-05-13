@@ -277,6 +277,11 @@ Character *Char_BFG_New(fixed_t x, fixed_t y)
 	this->character.health_i[1][2] = 42;
 	this->character.health_i[1][3] = 34;
 	
+	this->character.health_i[2][0] = 86;
+	this->character.health_i[2][1] = 102;
+	this->character.health_i[2][2] = 43;
+	this->character.health_i[2][3] = 27;
+	
 	//health bar color
 	this->character.health_bar = 0xFF00A6E2;
 	

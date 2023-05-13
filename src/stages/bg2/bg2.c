@@ -50,7 +50,7 @@ void Back_BG2_DrawBG(StageBack *back)
 	};
 	RECT b2_src = {0, 128, 256, 128};
 	RECT_FIXED b2_dst = {
-		FIXED_DEC(-1,1) - fx,
+		FIXED_DEC(0,1) - fx,
 		FIXED_DEC(0,1) - fy,
 		FIXED_DEC(320,1),
 		FIXED_DEC(160,1)

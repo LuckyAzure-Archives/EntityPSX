@@ -173,6 +173,11 @@ Character *Char_Agoti_New(fixed_t x, fixed_t y)
 	this->character.health_i[1][2] = 39;
 	this->character.health_i[1][3] = 30;
 	
+	this->character.health_i[2][0] = 80;
+	this->character.health_i[2][1] = 28;
+	this->character.health_i[2][2] = 41;
+	this->character.health_i[2][3] = 31;
+	
 	//health bar color
 	this->character.health_bar = 0xFF2F2F2F;
 	

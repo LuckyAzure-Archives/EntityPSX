@@ -26,7 +26,7 @@ void Load_Events()
 void Events()
 {
 	event.shake = lerp(event.shake,0,FIXED_DEC(2,10));
-	FollowCharCamera();
+	//FollowCharCamera();
 	//if(stage.prefs.followcamera)
 	//	FollowCharCamera();
 }

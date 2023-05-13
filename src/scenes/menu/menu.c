@@ -358,7 +358,7 @@ void Menu_Tick(void)
 							break;
 					}
 					Audio_PlaySound(menu.sounds[1], 0x3fff);
-					menu.next_select = 0;
+					menu.next_select = (menu.next_page == MenuPage_Credits) ? 1 : 0;
 					menu.trans_time = FIXED_UNIT;
 				}
 				
@@ -591,14 +591,6 @@ void Menu_Tick(void)
 				menu.page_state.freeplay.back_b = FIXED_DEC(255,1);
 			}
 			
-			//Draw page label
-			fonts.font_bold.draw(&fonts.font_bold,
-				"FREEPLAY",
-				16,
-				SCREEN_HEIGHT - 32,
-				FontAlign_Left
-			);
-			
 			//Handle option and selection
 			if (menu.next_page == menu.page && Trans_Idle())
 			{
@@ -759,29 +751,62 @@ void Menu_Tick(void)
 		{
 			static const struct
 			{
+				boolean skip;
+				boolean has_icon;
+				u8 iconoffset;
 				u32 col;
 				const char *text;
 				const char *desc;
 			} credits_options[] = {
-				{0xFFF6D558, "CuckyDev", "The original creator of PSXFunkin."},
-				{0xFFB60B00, "spicyjpeg", "He made the save system and sound effects work."},
-				{0xFF2CB2E5, "LuckyAzure", "The guy who started developing this engine."},
-				{0xFFC9AE69, "UNSTOP4BLE", "Helped me a lot with everything.\n(sound effects, save system, some graphic stuff, etc.)"},
-				{0xFFFD6923, "IgorSou3000", "Also helped with many things too."},
-				{0xFF0000FF, "BilliousData", "He made the original CDR font."}
+				{true, false, NULL, 0xFFFFFFFF, "CREDITS", ""},
+				{false, true, 2, 0xFF2CB2E5, "LuckyAzure", "The creator of this port."},
+				{true, false, NULL, 0xFFFFFFFF, "ENGINE CREDITS", ""},
+				{false, true, 0, 0xFFF6D558, "CuckyDev", "The original creator of PSXFunkin."},
+				{false, true, 1, 0xFFB60B00, "spicyjpeg", "He made the save system and sound effects work."},
+				{false, true, 2, 0xFF2CB2E5, "LuckyAzure", "The guy who made this modified version of PSXFunkin."},
+				{false, true, 3, 0xFFC9AE69, "UNSTOP4BLE", "Helped me a lot with everything.\n(sound effects, save system, some graphic stuff, etc.)"},
+				{false, true, 4, 0xFFFD6923, "IgorSou3000", "Also helped with many things too."},
+				{false, true, 5, 0xFF0000FF, "BilliousData", "He made the original CDR font."},
+				{true, false, NULL, 0xFFFFFFFF, "MOD CREDITS", ""},
+				{false, false, NULL, 0xFFFFFFFF, "SugarRatio", "Lead Animator/Artist, Director"},
+				{false, false, NULL, 0xFFFFFFFF, "Perez", "Programmer"},
+				{false, false, NULL, 0xFFFFFFFF, "The Innuendo", "Primary Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "Rozebud", "Featured Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "Saruky", "Featured Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "CDMusic", "Featured Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "Hazelpy", "Programmer"},
+				{false, false, NULL, 0xFFFFFFFF, "Tenzubushi", "Animator/Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Moro", "Animator"},
+				{false, false, NULL, 0xFFFFFFFF, "Mashprotato", "Animator/Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Ebolahorny", "Animator/Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "CheriiDreams", "Animator/Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Netba", "Background Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "OrenjiMusic", "Featured Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "Elikapelika", "Background Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "_liquidmercurie", "Animator/Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Jyro", "Background Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Grass jeak", "Featured Artist"},
+				{false, false, NULL, 0xFFFFFFFF, "Brightfyre", "Programmer"},
+				{false, false, NULL, 0xFFFFFFFF, "ash", "Programmer"},
+				{false, false, NULL, 0xFFFFFFFF, "Hexar", "Programmer"},
+				{false, false, NULL, 0xFFFFFFFF, "Mamon", "Vocals for RHO"},
+				{false, false, NULL, 0xFFFFFFFF, "MartyKrimson74", "Featured Composer"},
+				{false, false, NULL, 0xFFFFFFFF, "Pointy", "Charter"},
+				{false, false, NULL, 0xFFFFFFFF, "Cerbera", "Charter"},
+				{false, false, NULL, 0xFFFFFFFF, "AlchoholicDJ", "Charter/Animator"},
+				{false, false, NULL, 0xFFFFFFFF, "Cougar Mac Dowell", "Voice Actor (Solazar, Agoti)"},
+				{false, false, NULL, 0xFFFFFFFF, "JordoPrice", "Voice Actor (Aldryx)"},
+				{false, false, NULL, 0xFFFFFFFF, "Katastrofree", "Voice Actor (Nikusa)"},
+				{false, false, NULL, 0xFFFFFFFF, "Greyfacered", "Voice Actor (Nikusa Song Voice)"},
+				{false, false, NULL, 0xFFFFFFFF, "Alex Vei", "Menu Effect"},
+				{false, false, NULL, 0xFFFFFFFF, "iVorart", "Cutscene background for AGOTI, Writer"},
+				{false, false, NULL, 0xFFFFFFFF, "pizzapancakess_", "Trailer Editor"},
+				{false, false, NULL, 0xFFFFFFFF, "Longest soloever", "Trailer Song"},
 			};
 			
 			//Initialize page
 			if (menu.page_swap)
 				menu.scroll = COUNT_OF(credits_options) * FIXED_DEC(24 + SCREEN_HEIGHT2,1);
-			
-			//Draw page label
-			fonts.font_bold.draw(&fonts.font_bold,
-				"CREDITS",
-				SCREEN_WIDTH2,
-				16,
-				FontAlign_Center
-			);
 			
 			//Handle option and selection
 			if (menu.next_page == menu.page && Trans_Idle())
@@ -790,18 +815,22 @@ void Menu_Tick(void)
 				if (pad_state.press & PAD_UP)
 				{
 					Audio_PlaySound(menu.sounds[0], 0x3fff);
-					if (menu.select > 0)
+					if (menu.select > 0 && !credits_options[menu.select - 1].skip)
 						menu.select--;
+					else if(menu.select > 1)
+						menu.select -= 2;
 					else
 						menu.select = COUNT_OF(credits_options) - 1;
 				}
 				if (pad_state.press & PAD_DOWN)
 				{
 					Audio_PlaySound(menu.sounds[0], 0x3fff);
-					if (menu.select < COUNT_OF(credits_options) - 1)
+					if ((menu.select < COUNT_OF(credits_options) - 1) && !credits_options[menu.select + 1].skip)
 						menu.select++;
+					else if((menu.select < COUNT_OF(credits_options) - 2))
+						menu.select += 2;
 					else
-						menu.select = 0;
+						menu.select = 1;
 				}
 				
 				//Return to main menu if circle is pressed
@@ -831,43 +860,55 @@ void Menu_Tick(void)
 			Gfx_BlendRect(&desc_back, 110, 110, 110, 2);
 			
 			//Draw options
-			s32 next_scroll = menu.select * FIXED_DEC(32,1);
+			s32 next_scroll = menu.select * FIXED_DEC(30,1);
 			menu.scroll += (next_scroll - menu.scroll) >> 4;
 			
 			for (u8 i = 0; i < COUNT_OF(credits_options); i++)
 			{
 				//Get position on screen
 				s32 y = (i * 30) - 8 - (menu.scroll >> FIXED_SHIFT);
+				
 				if (y <= -SCREEN_HEIGHT2 - 24)
 					continue;
 				if (y >= SCREEN_HEIGHT2 + 24)
 					break;
 				
-				RECT icon_src = {(i * 32), 72, 32, 32};
-				RECT icon_dst = {
-					96 + (y >> 2) + ((i == menu.select) ? 0 : 2),
-					SCREEN_HEIGHT2 + y - 14 + ((i == menu.select) ? 0 : 2),
-					(i == menu.select) ? 32 : 28,
-					(i == menu.select) ? 32 : 28
-				};
-				Gfx_DrawTexCol(&menu.tex_options,
-					&icon_src,
-					&icon_dst,
-					(i == menu.select) ? 128 : 100,
-					(i == menu.select) ? 128 : 100,
-					(i == menu.select) ? 128 : 100
-				);
+				if(credits_options[i].has_icon)
+				{
+					RECT icon_src = {(credits_options[i].iconoffset * 32), 72, 32, 32};
+					RECT icon_dst = {
+						96 + (y >> 2) + ((i == menu.select) ? 0 : 2),
+						SCREEN_HEIGHT2 + y - 14 + ((i == menu.select) ? 0 : 2),
+						(i == menu.select) ? 32 : 28,
+						(i == menu.select) ? 32 : 28
+					};
+					Gfx_DrawTexCol(&menu.tex_options,
+						&icon_src,
+						&icon_dst,
+						(i == menu.select) ? 128 : 100,
+						(i == menu.select) ? 128 : 100,
+						(i == menu.select) ? 128 : 100
+					);
+				}
 				
 				//Draw text
-				fonts.font_cdr.draw_col(&fonts.font_cdr,
-					credits_options[i].text,
-					128 + (y >> 2),
-					SCREEN_HEIGHT2 + y,
-					FontAlign_Left,
-					(i == menu.select) ? 128 : 100,
-					(i == menu.select) ? 128 : 100,
-					(i == menu.select) ? 128 : 100
-				);
+				if(!credits_options[i].skip)
+					fonts.font_cdr.draw_col(&fonts.font_cdr,
+						credits_options[i].text,
+						(128 + (y >> 2)) - (credits_options[i].has_icon ? 0 : 32),
+						SCREEN_HEIGHT2 + y,
+						FontAlign_Left,
+						(i == menu.select) ? 128 : 100,
+						(i == menu.select) ? 128 : 100,
+						(i == menu.select) ? 128 : 100
+					);
+				else
+					fonts.font_bold.draw(&fonts.font_bold,
+						credits_options[i].text,
+						96 + (y >> 2),
+						SCREEN_HEIGHT2 - 8 + y,
+						FontAlign_Left
+					);
 			}
 			
 			//Draw background

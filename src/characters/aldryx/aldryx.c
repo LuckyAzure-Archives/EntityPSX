@@ -170,6 +170,11 @@ Character *Char_Aldryx_New(fixed_t x, fixed_t y)
 	this->character.health_i[1][2] = 32;
 	this->character.health_i[1][3] = 36;
 	
+	this->character.health_i[2][0] = 207;
+	this->character.health_i[2][1] = 0;
+	this->character.health_i[2][2] = 35;
+	this->character.health_i[2][3] = 35;
+	
 	//health bar color
 	this->character.health_bar = 0xFFBA1E24;
 	

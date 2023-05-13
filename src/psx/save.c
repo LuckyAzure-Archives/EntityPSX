@@ -7,8 +7,8 @@
 #include "../scenes/stage/stage.h"
 				  
 	        //HAS to be BASCUS-scusid,somename
-#define savetitle "bu00:BASCUS-00000psxfplus"
-#define savename  "PSXFunkinPlus Save Data"
+#define savetitle "bu00:BASCUS-00000entipfp"
+#define savename  "Entity Save Data"
 
 static const u8 saveIconPalette[32] = 
 {
